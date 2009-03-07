@@ -1,0 +1,9 @@
+#!/usr/bin/env perl
+use Geography::NationalGrid;
+use Geography::NationalGrid::GB;
+
+my $point = new Geography::NationalGrid::GB(
+  Latitude => $ARGV[0],
+  Longitude => $ARGV[1]
+);
+print $point->easting.",".$point->northing."\n";
