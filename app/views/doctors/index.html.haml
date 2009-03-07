@@ -1,0 +1,10 @@
+#search_form
+  =image_tag("doctor.jpg")
+  - form_tag(doctors_url, :method => :post, :id => "main_form") do
+    = text_field_tag(:postcode)
+    <br/>
+    = submit_tag "Find me a freaking doctor, my head hurts."
+
+  
+%script
+  Event.observe($('main_form'), "submit", function(){$('loading').show();});

@@ -1,0 +1,12 @@
+%p Your nearest doctor is.....
+#results
+  - @doctors.each do |doctor|
+    .result
+      %h1#doctor= link_to(doctor.name, doctor.details_url)
+
+.options
+  =link_to "More (this will take forever)....", params.merge(:all => true), :id => "more", :method => :post unless params[:all]
+  =link_to "Look for another location?", root_path
+
+%script
+  Event.observe($("more"), "click", function(){ $("loading").show(); });

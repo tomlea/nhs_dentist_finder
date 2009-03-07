@@ -34,4 +34,9 @@ class NHSServiceCollection
     end
   end
 
+  def all
+    rv = []
+    each{|d| rv.push d }
+    rv
+  end
 end

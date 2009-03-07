@@ -1,0 +1,20 @@
+!!!
+%head
+  %title Find me a freaking doctor
+  = stylesheet_link_tag "application.css"
+  = javascript_include_tag :all
+%body
+  #header
+    %h1 Find a Doctor
+
+  #content
+    =yield
+
+    #loading{:style => "display:none"}
+      Looking for a doctor.
+      <br/>
+      <embed src="/drybone.mid" height="20" width="144" mastersound="mastersound" controls="smallconsole" autostart="true" loop="true" />
+
+  #footer
+    Made by people who do ruby. This app does scraping, if your site is getting scraped by it too much, drop me a tweet
+    =link_to "@cwninja", "http://twitter.com/cwninja"
