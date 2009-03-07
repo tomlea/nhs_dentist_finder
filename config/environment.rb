@@ -77,7 +77,7 @@ Rails::Initializer.run do |config|
 end
 
 Geokit::Geocoders.google = "ABQIAAAAQwjhffRqBbLf71qOQKfpVRT2yXp_ZAY8_ufC3CFXhHIE1NvwkxQEjQb-fHkjr7nOSz7ebe_f5-g4mg"
-
+Geokit::Geocoders.yahoo = "9gmaOzPV34FCqlXI1srR1eJs8qnnRBaT1Hpgva0ev6hshyQhnffOvHWAGb42Cw0-"
 module OpenSearch
   class Gazetteer
     include HTTParty
