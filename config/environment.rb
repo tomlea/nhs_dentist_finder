@@ -78,24 +78,3 @@ end
 
 Geokit::Geocoders.google = "ABQIAAAAQwjhffRqBbLf71qOQKfpVRT2yXp_ZAY8_ufC3CFXhHIE1NvwkxQEjQb-fHkjr7nOSz7ebe_f5-g4mg"
 Geokit::Geocoders.yahoo = "9gmaOzPV34FCqlXI1srR1eJs8qnnRBaT1Hpgva0ev6hshyQhnffOvHWAGb42Cw0-"
-module OpenSearch
-  class Gazetteer
-    include HTTParty
-
-    base_uri "openspace.ordnancesurvey.co.uk/osmapapi"
-
-    def initialize(api_key)
-      @api_key = api_key
-    end
-
-    def find_locations(query_string)
-      self.class.get '/gazetteer', :query => {
-        :q    => CGI.escape(query_string),
-        :key  => @api_key,
-        :f    => 'json',
-        :url  => 'http://localhost/'
-      }
-    end
-  end
-end
-

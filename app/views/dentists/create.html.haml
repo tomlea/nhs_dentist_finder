@@ -1,5 +1,8 @@
+%p Your nearest dentist is.....
 #results
-  %h1#dentist&= @dentist.name
+  %h1#dentist= link_to(@dentist.name, @dentist.details_url)
   %ul#accepts
     - @dentist.accepting.each do |accepting_string|
       %li&= accepting_string
+
+=link_to "Look for another location?", root_path

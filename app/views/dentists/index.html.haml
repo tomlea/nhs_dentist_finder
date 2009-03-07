@@ -1,4 +1,6 @@
 #search_form
+  =image_tag("squid-teeth.jpg")
   - form_tag(dentists_url, :method => :post) do
     = text_field_tag(:postcode)
-    = submit_tag
+    <br/>
+    = submit_tag "Find me a freaking dentist, my mouth hurts."
