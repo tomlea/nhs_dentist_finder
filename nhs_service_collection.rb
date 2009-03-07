@@ -21,21 +21,17 @@ class NHSServiceCollection
 
     loop do
       doc.search("//.result").each do |el|
-        link = el.search("//a").first
-        dentist = member_class.new(link[:title], "http://www.nhs.uk" + link[:href].gsub(/[ ^]/, "+"))
-        values.push dentist
-        yield dentist
+        item = new_item(el)
+        values.push item
+        yield item
       end
 
-      unless next_page_link = doc.search("//li.next/a").first and next_page_link[:href]
+      if next_page_link = doc.search("//li.next/a").first and next_page_link[:href]
+        doc = Hpricot(open("http://www.nhs.uk"+next_page_link[:href]))
+      else
         return @complete_set = values
       end
-
-      doc = Hpricot(open("http://www.nhs.uk"+next_page_link[:href]))
     end
   end
 
-  def nearest
-    each{|r| return r}
-  end
 end

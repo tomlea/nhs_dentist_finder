@@ -24,7 +24,8 @@ private
 end
 
 class NHSDentistCollection < NHSServiceCollection
-  def member_class
-    NHSDentist
+  def new_item(el)
+    link = el.search("//a").first
+    NHSDentist.new(link[:title], "http://www.nhs.uk" + link[:href].gsub(/[ ^]/, "+"))
   end
 end
