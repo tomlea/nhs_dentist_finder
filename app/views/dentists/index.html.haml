@@ -1,6 +1,15 @@
 #search_form
   =image_tag("squid-teeth.jpg")
-  - form_tag(dentists_url, :method => :post) do
+  - form_tag(dentists_url, :method => :post, :id => "main_form") do
     = text_field_tag(:postcode)
     <br/>
     = submit_tag "Find me a freaking dentist, my mouth hurts."
+
+
+#loading{:style => "display:none"}
+  Looking for a dentist.
+  <br/>
+  <embed src="/drybone.mid" height="20" width="144" mastersound="mastersound" controls="smallconsole" autostart="true" loop="true" />
+  
+%script
+  Event.observe($('main_form'), "submit", function(){$('loading').show();});
