@@ -1,0 +1,5 @@
+#results
+  %h1#dentist&= @dentist.name
+  %ul#accepts
+    - @dentist.accepting.each do |accepting_string|
+      %li&= accepting_string
