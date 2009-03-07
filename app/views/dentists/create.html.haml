@@ -1,8 +1,15 @@
 %p Your nearest dentist is.....
 #results
-  %h1#dentist= link_to(@dentist.name, @dentist.details_url)
-  %ul#accepts
-    - @dentist.accepting.each do |accepting_string|
-      %li&= accepting_string
+  - @dentists.each do |dentist|
+    .result
+      %h1#dentist= link_to(dentist.name, dentist.details_url)
+      %ul#accepts
+        - dentist.accepting.each do |accepting_string|
+          %li&= accepting_string
 
-=link_to "Look for another location?", root_path
+.options
+  =link_to "More (this will take forever)....", params.merge(:all => true), :id => "more", :method => :post unless params[:all]
+  =link_to "Look for another location?", root_path
+
+%script
+  Event.observe($("more"), "click", function(){ $("loading").show(); });

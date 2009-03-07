@@ -10,6 +10,13 @@ body {
   body #content {
     background-color: #fff;
     padding: 20px; }
+    body #content .options {
+      margin: 5px; }
+      body #content .options a {
+        display: block;
+        margin: 15px;
+        font-size: 1.2em;
+        color: #00a; }
     body #content img {
       margin: 20px;
       border: 10px solid #ccc;
@@ -21,11 +28,15 @@ body {
       margin-bottom: 10px; }
     body #content input[type=submit] {
       font-size: 20px; }
-    body #content #results #accepts {
-      list-style: none;
-      margin: 0;
-      padding: 0; }
-      body #content #results #accepts li {
-        margin: 10px 0; }
+    body #content #results .result {
+      border-top: 1px solid #ccc;
+      margin-top: 20px;
+      padding-top: 20px; }
+      body #content #results .result #accepts {
+        list-style: none;
+        margin: 0;
+        padding: 0; }
+        body #content #results .result #accepts li {
+          margin: 10px 0; }
   body #footer {
     margin: 20px; }
