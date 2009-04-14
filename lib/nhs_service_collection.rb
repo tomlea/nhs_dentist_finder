@@ -20,7 +20,7 @@ class NHSServiceCollection
     doc = Hpricot(open("http://www.nhs.uk/ServiceDirectories/Pages/ServiceResults.aspx?Postcode=#{postcode}&Coords=#{coords}&ServiceType=#{service_type}&JScript=1"))
 
     loop do
-      doc.search("//.result").each do |el|
+      doc.search("//.icon").each do |el|
         item = new_item(el)
         values.push item
         yield item
