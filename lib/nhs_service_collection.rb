@@ -14,8 +14,8 @@ class NHSServiceCollection
     @service_type = "Dentist"
   end
 
-  def each
-    return @complete_set if @complete_set
+  def each(&block)
+    return @complete_set.each(&block) if @complete_set
     values = []
     doc = Hpricot(open("http://www.nhs.uk/ServiceDirectories/Pages/ServiceResults.aspx?Postcode=#{postcode}&Coords=#{coords}&ServiceType=#{service_type}&JScript=1"))
 
