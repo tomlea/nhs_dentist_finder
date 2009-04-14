@@ -1,6 +1,7 @@
 !!!
 %head
-  %title Find me a freaking dentist
+  %title UK NHS Dentist Search
+  %meta{:name => "description", :content => "Looking for an NHS dentist? Finding the official site tricky? Enter your postcode and search away!"}
   = stylesheet_link_tag "application.css"
   = javascript_include_tag :all
 %body
@@ -18,3 +19,13 @@
   #footer
     Made by people who do ruby. This app does scraping, if your site is getting scraped by it too much, drop me a tweet
     =link_to "@cwninja", "http://twitter.com/cwninja"
+    #disclamer
+      %p
+        This website was constructed by <a href="http://tomlea.co.uk">Tom Lea</a> and <a href="http://lukeredpath.co.uk/">Luke Redpath</a> as part of
+        <a href="http://rewiredstate.org/">Rewired State Government Hack Day</a>.
+        It is currently maintained on a voluntary basis by <a href="http://twitter.com/cwninja">Tom Lea</a>.
+      %p
+        All data is screen scraped from the <a href="http://www.nhs.uk/">NHS Choices Website</a>.
+        This project is not endorsed, or supported by the NHS in any way.
+      %p#github
+        Source code for this site is <a href="http://github.com/cwninja/nhs_dentist_finder/" title="Source code available on github.">available on GitHub</a>
