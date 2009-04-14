@@ -8,7 +8,7 @@ class DentistsController < ApplicationController
       if params[:all]
         @dentists = NHSDentistCollection.new(postcode, coords).select{|d| p d; d.accepting_new_patiants?}
       else
-        @dentists = [NHSDentistCollection.new(postcode, coords).find{|d| p d; d.accepting_new_patiants?}]
+        @dentists = [NHSDentistCollection.new(postcode, coords).find{|d| p d; d.accepting_new_patiants?}].compact
       end
     else
       redirect_to :action => :index

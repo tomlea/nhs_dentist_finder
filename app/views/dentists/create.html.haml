@@ -1,15 +1,22 @@
-%p Your nearest dentist is.....
-#results
-  - @dentists.each do |dentist|
-    .result
-      %h1#dentist= link_to(dentist.name, dentist.details_url)
-      %ul#accepts
-        - dentist.accepting.each do |accepting_string|
-          %li&= accepting_string
+- if @dentists.empty?
+  %h1 Sorry, no dentist found!
+  %p
+    From our automated searching of the <a href="http://www.nhs.uk/servicedirectories/Pages/ServiceSearch.aspx?ServiceType=Dentist">NHS Direct website</a>, we could not find a dentist within your area.
+  .options
+    =link_to "Look from another location?", root_path
+- else
+  %p Your nearest dentist is.....
+  #results
+    - @dentists.each do |dentist|
+      .result
+        %h1#dentist= link_to(dentist.name, dentist.details_url)
+        %ul#accepts
+          - dentist.accepting.each do |accepting_string|
+            %li&= accepting_string
 
-.options
-  =link_to "More (this will take forever)....", params.merge(:all => true), :id => "more", :method => :post unless params[:all]
-  =link_to "Look for another location?", root_path
+  .options
+    =link_to "More (this will take forever)....", params.merge(:all => true), :id => "more", :method => :post unless params[:all]
+    =link_to "Look from another location?", root_path
 
-%script
-  Event.observe($("more"), "click", function(){ $("loading").show(); });
+  %script
+    Event.observe($("more"), "click", function(){ $("loading").show(); });
