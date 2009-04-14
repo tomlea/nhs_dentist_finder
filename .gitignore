@@ -1,2 +1,4 @@
 /db
 /log/*
+/public/stylesheets/*.css
+.DS_Store
