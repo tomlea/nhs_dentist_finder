@@ -2,3 +2,4 @@
 /log/*
 /public/stylesheets/*.css
 .DS_Store
+/config/nhs_api.yml
