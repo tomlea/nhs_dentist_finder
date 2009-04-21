@@ -8,35 +8,38 @@ require 'active_support'
 class NHSServiceCollection
   include Enumerable
 
-  attr_reader :service_type, :postcode, :coords
-  def initialize(postcode, coords)
-    @postcode, @coords = postcode, coords
-    @service_type = "Dentist"
+  GP = 1
+  DENTISTS = 2
+
+  attr_reader :service_type, :postcode
+  def initialize(postcode)
+    @postcode = postcode
+    @service_type = DENTISTS
   end
 
   def each(&block)
-    return @complete_set.each(&block) if @complete_set
     values = []
-    doc = Hpricot(open("http://www.nhs.uk/ServiceDirectories/Pages/ServiceResults.aspx?Postcode=#{postcode}&Coords=#{coords}&ServiceType=#{service_type}&JScript=1"))
-
-    loop do
-      doc.search("//.icon").each do |el|
-        item = new_item(el)
-        values.push item
-        yield item
-      end
-
-      if next_page_link = doc.search("//li.next/a").first and next_page_link[:href]
-        doc = Hpricot(open("http://www.nhs.uk"+next_page_link[:href]))
-      else
-        return @complete_set = values
-      end
+    doc = Hpricot(open("http://www.nhs.uk/NHSCWS/Services/ServicesSearch.aspx?user=#{nhs_api[:username]}&pwd=#{nhs_api[:password]}&q=#{postcode}&type=#{service_type}&PageNumber=1&PageSIze=100"))
+    doc.search("//service").each do |el|
+      item = new_item(el)
+      values.push item
+      yield item
     end
+
+    values
   end
 
   def all
     rv = []
     each{|d| rv.push d }
     rv
+  end
+
+  def nhs_api
+    self.class.nhs_api
+  end
+
+  def self.nhs_api
+    @nhs_api ||= YAML.load(File.open(File.join(Rails.root, "config", "nhs_api.yml"))).symbolize_keys
   end
 end

@@ -24,7 +24,6 @@ Rails::Initializer.run do |config|
   # They can then be installed with "rake gems:install" on new installations.
   # You have to specify the :lib option for libraries, where the Gem name (sqlite3-ruby) differs from the file itself (sqlite3)
   config.gem "haml"
-  config.gem "geokit"
   config.gem "httparty"
   # config.gem "hpricot", :version => '0.6', :source => "http://code.whytheluckystiff.net"
   # config.gem "sqlite3-ruby", :lib => "sqlite3"
@@ -76,5 +75,3 @@ Rails::Initializer.run do |config|
   # config.active_record.observers = :cacher, :garbage_collector, :forum_observer
 end
 
-Geokit::Geocoders.google = "ABQIAAAAQwjhffRqBbLf71qOQKfpVRT2yXp_ZAY8_ufC3CFXhHIE1NvwkxQEjQb-fHkjr7nOSz7ebe_f5-g4mg"
-Geokit::Geocoders.yahoo = "9gmaOzPV34FCqlXI1srR1eJs8qnnRBaT1Hpgva0ev6hshyQhnffOvHWAGb42Cw0-"

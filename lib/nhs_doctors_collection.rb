@@ -1,10 +1,8 @@
 require "nhs_service_collection"
 
 class NHSDoctor < Struct.new(:name, :details_url)
-
-
   def inspect
-    "#<NHSDentist name=#{name.inspect}, details_url=#{details_url.inspect}>"
+    "#<NHSDoctor name=#{name.inspect}, details_url=#{details_url.inspect}>"
   end
 private
   def details
@@ -19,11 +17,11 @@ end
 class NHSDoctorsCollection < NHSServiceCollection
   def initialize(*args)
     super
-    @service_type = "GP"
+    @service_type = GP
   end
   def new_item(el)
-    if link = el.search("//a").first
-      NHSDoctor.new(link[:title], "http://www.nhs.uk" + link[:href].gsub(/[ ^]/, "+"))
-    end
+    details_page_url = el.search("//providerprofilepageurl").first.inner_html
+    name = el.search("//name").first.inner_html
+    NHSDoctor.new(name, details_page_url)
   end
 end
