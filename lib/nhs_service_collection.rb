@@ -40,6 +40,10 @@ class NHSServiceCollection
   end
 
   def self.nhs_api
-    @nhs_api ||= YAML.load(File.open(File.join(Rails.root, "config", "nhs_api.yml"))).symbolize_keys
+    @nhs_api ||= if ENV["nhs_password"] and ENV["nhs_username"]
+      {:username => ENV["nhs_username"], :password => ENV["nhs_password"]}
+    else
+      YAML.load(File.open(File.join(Rails.root, "config", "nhs_api.yml"))).symbolize_keys
+    end
   end
 end
