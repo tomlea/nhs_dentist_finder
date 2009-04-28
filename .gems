@@ -1,1 +1,3 @@
 httparty
+haml
+cwninja-dynamic_sass --source gems.github.com
