@@ -16,7 +16,7 @@ class NHSDentist < Struct.new(:name, :details_url)
 private
   def details
     @details ||= (
-      doc = Hpricot(open(details_url))
+      doc = Hpricot(open(details_url.gsub(/ /, "+")))
       accepting = doc.search("//.Accepting/text()").map(&:to_s)
       {:accepting => accepting}
     )

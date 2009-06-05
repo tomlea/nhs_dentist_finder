@@ -2,6 +2,8 @@ set :application, "teeth"
 set :repository,  Dir.pwd
 set :deploy_via, :copy
 
+set :user, "norman"
+
 # If you aren't deploying to /u/apps/#{application} on the target
 # servers (which is the default), you can specify the actual location
 # via the :deploy_to variable:
