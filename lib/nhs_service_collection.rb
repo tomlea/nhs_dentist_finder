@@ -29,6 +29,19 @@ class NHSServiceCollection
     values
   end
 
+  def first(n = nil)
+    if n
+      collection = []
+      each do |v|
+        return collection if collection.size >= n
+        collection << v
+      end
+      collection
+    else
+      first(1).first
+    end
+  end
+
   def all
     rv = []
     each{|d| rv.push d }
